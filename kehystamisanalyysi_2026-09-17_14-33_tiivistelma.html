@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suomalainen biometaani kehysanalyysina: Maataloustoimijoiden asema arvoketjussa</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --ink:      #0F1623;
+    --ink2:     #1E2A3A;
+    --surface:  #F5F7FA;
+    --card:     #FFFFFF;
+    --border:   #E2E8F0;
+    --muted:    #64748B;
+    --brand:    #2F8F5F;
+    --kaplan:   #B8860B;
+    --hoppmann: #9B44A8;
+    --accent:   #2F8F5F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── SIVU 1: KANSI ── */
+  .cover {
+    background: linear-gradient(135deg, #0F1623 0%, #16332A 50%, #0F1623 100%);
+    color: #fff;
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,143,95,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute; bottom: -40px; left: 30%;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-meta {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .cover-meta::before {
+    content: ''; display: inline-block;
+    width: 28px; height: 2px; background: var(--brand);
+  }
+  .cover h1 {
+    font-size: 30px; font-weight: 900; line-height: 1.15;
+    letter-spacing: -0.5px; margin-bottom: 16px; position: relative;
+  }
+  .cover-date { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+  .cover-stakeholder { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 24px; font-weight: 600; }
+  .lens-strip { display: flex; gap: 8px; flex-wrap: wrap; }
+  .lens-tag {
+    font-size: 11px; font-weight: 700; padding: 4px 12px;
+    border-radius: 20px; border: 1px solid; letter-spacing: 0.3px;
+  }
+  .lt-k { color: #F5C842; border-color: rgba(245,200,66,0.4); background: rgba(212,168,67,0.15); }
+  .lt-h { color: #D87CE8; border-color: rgba(216,124,232,0.4); background: rgba(155,68,168,0.15); }
+
+  /* ── SIVU 1: BODY ── */
+  .body-wrap { max-width: 860px; margin: 0 auto; padding: 40px 40px 20px; }
+
+  .section { margin-bottom: 28px; }
+  .section-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section h2 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.2px; }
+  .section p { color: #334155; font-size: 14px; line-height: 1.75; }
+
+  .concept-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+  .concept-chip {
+    font-size: 12px; font-weight: 600; padding: 5px 13px;
+    border-radius: 20px; background: var(--card);
+    border: 1px solid var(--border); color: var(--ink2);
+  }
+  .concept-chip:nth-child(3n+1) { border-left: 3px solid var(--brand); }
+  .concept-chip:nth-child(3n+2) { border-left: 3px solid var(--kaplan); }
+  .concept-chip:nth-child(3n+0) { border-left: 3px solid var(--hoppmann); }
+
+  .actions-wrap {
+    background: linear-gradient(135deg, #0F1623, #16332A);
+    border-radius: 12px; padding: 24px 28px; margin-top: 12px; color: #fff;
+  }
+  .action-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .action-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .action-num {
+    font-size: 22px; font-weight: 900; color: var(--brand);
+    min-width: 28px; line-height: 1.4; opacity: 0.7;
+  }
+  .action-text { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.65; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  /* ── SIVU 2: LÄHTEET ── */
+  .page-break { page-break-before: always; break-before: page; }
+
+  .sources-cover {
+    background: linear-gradient(135deg, #16332A 0%, #0F1623 100%);
+    color: #fff;
+    padding: 32px 56px 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .sources-cover-icon { font-size: 28px; opacity: 0.7; }
+  .sources-cover h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
+  .sources-cover p { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+  .sources-body { max-width: 860px; margin: 0 auto; padding: 32px 40px 40px; }
+  .source-section { margin-bottom: 32px; }
+  .source-section-heading {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .source-section-heading::before {
+    content: ''; display: inline-block;
+    width: 16px; height: 2px; background: var(--accent);
+  }
+  .source-item-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .source-item-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--brand), var(--hoppmann));
+  }
+  .source-claim { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; padding-left: 4px; }
+  .source-ref { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding-left: 4px; }
+  .source-quote {
+    font-size: 13px; font-style: italic; color: #475569; line-height: 1.7;
+    padding: 10px 14px; background: #F8FAFC; border-radius: 6px; border-left: 2px solid var(--border);
+  }
+  .source-quote::before { content: '\201C'; }
+  .source-quote::after  { content: '\201D'; }
+
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+    padding: 16px 40px;
+    background: var(--ink);
+    color: rgba(255,255,255,0.35);
+    font-size: 11px; letter-spacing: 0.3px;
+  }
+  .footer-brand { font-weight: 700; color: rgba(255,255,255,0.55); }
+
+  @media print {
+    body { background: white; }
+    .cover, .sources-cover, .actions-wrap { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-meta">Biometaani &amp; Kehystäminen · Kehysanalyysin tiivistelmä</div>
+  <h1>Suomalainen biometaani kehysanalyysina: Maataloustoimijoiden asema arvoketjussa</h1>
+  <div class="cover-date">17.9.2026</div>
+  <div class="cover-stakeholder">Painopiste: Maatalous (viljelijät, MTK)</div>
+  <div class="lens-strip">
+    <span class="lens-tag lt-k">Kaplan 2008</span>
+    <span class="lens-tag lt-h">Hoppmann ym. 2020</span>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  
+  <div class="section">
+    <div class="section-label">01</div>
+    <h2>Tilannekuva</h2>
+    <p>Suomessa toimii 100 biokaasulaitosta, joista 31 jalostaa biometaania — tuotantokenttä kasvaa mutta on hajanainen. TEM myönsi 16.9.2026 Suomen Lantakaasun Kiuruveden laitokselle 2,8 miljoonan euron investointiavustuksen bioperäisen CO₂:n talteenottoon, mikä osoittaa maatalouspohjaisen biokaasun olevan julkisen rahoituksen piirissä. Keskeinen kehyskamppailu koskee sitä, kenen ehdoilla biometaanin arvoketju rakentuu ja valuvatko viljelijöiden tuottamat päästövähennykset muille sektoreille ilman asianmukaista kompensaatiota.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">02</div>
+    <h2>Kilpailevat kehykset</h2>
+    <p>Kentällä kilpailee viisi samanaikaista kehystä: (1) MTK:n ja alan järjestöjen huoltovarmuus- ja kiertotalousnäkökulma, (2) SYKEn sähköistys-ensisijaisuusnäkökulma, (3) teollisuusinvestointi- ja arvoketjunäkökulma (Suomen Lantakaasu, Gasum), (4) byrokratia- ja tukiennakoimattomuusnäkökulma sekä (5) MMM:n ja YM:n ravinnekierto-ympäristönäkökulma. Viljelijöiden kannalta vahvin liittolainen on huoltovarmuusnäkökulma, jonka vastavoima on sähköistyksen ensisijaisuutta korostava näkökulma, joka rajaa biometaanin niche-rooliksi. Arvoketjukamppailu teollisten toimijoiden kanssa uhkaa jättää viljelijät raaka-ainetoimittajan asemaan ilman riittävää tuotonjakoa.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">03</div>
+    <h2>Kehystämisdimensiot ja -taktiikat</h2>
+    <p>Viljelijöiden kannattaa vahvistaa diagnostista kehystään korostamalla konkreettista ongelmaa: Suomi on haavoittuva sekä tuontienergian että kemiallisten lannoitteiden suhteen, ja maatalouden biomassat ovat hyödyntämätön kotimainen resurssi. Prognostisessa kehystämisessä tulee yhdistää energiaomavaraisuus, ravinnekierto ja viljelijän taloudellinen kannattavuus yhdeksi kokonaisviestiksi eikä esittää niitä erillisinä hyötyinä. Keskeisiä kehystämistaktiikoita ovat myönnytystaktiikka sähköistyksen ensisijaisuuden tunnustamisessa (biometaani täydentää, ei korvaa) ja johtopäätöstaktiikka arvoketjukeskustelussa: ilman reilua tuotonjakoa maatilabiokaasuinvestoinnit eivät toteudu.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">04</div>
+    <h2>Legitimiteettitilanne</h2>
+    <p>Maatalouspohjaisen biokaasun legitimiteetti on vuonna 2026 kiistanalainen mutta vahvistumassa: geopoliittinen murros ja Hormuzin salmen sulku ovat antaneet huoltovarmuusnäkökulmalle uutta kantavuutta. Sisäinen arvoketjukamppailu on kuitenkin vakava — Luke tunnistaa viljelijöiden huolen siitä, etteivät päästövähennykset ohjaudu viljelijälle itselleen vaan liikennesektorin hyödyksi. CAP-neuvottelut 2028–2034 ovat kriittinen legitimiteettikoe: jos uusi ohjelmakausi ei sisällä vahvoja biokaasukannusteita, investointipohja heikkenee merkittävästi 2027 jälkeen.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">05</div>
+    <h2>Heikot signaalit</h2>
+    <p>Bioperäisen CO₂:n talteenoton nousu uudeksi tulovirraksi voi muuttaa maatilojen asemaa arvoketjussa (BECCS-näkökulma). Tuontialkuperätakuiden lähes kolminkertaistuminen vuodessa (400 GWh → 1,3 TWh vuonna 2025) uhkaa kotimaisten maatilatuottajien kilpailuasemaa ja voimistaa kotimaisuus-tuontikamppailua. MTK:n KiertoaSuomesta-aineistosta (toukokuu 2026) nouseva monialaisuusviesti kertoo, että viljelijät sisäistävät biokaasun osaksi tilan laajempaa resilienssikehitystä — tätä kannattaa vahvistaa edunvalvontaviestinnässä.</p>
+  </div>
+  
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Avaintermit</div>
+    <div class="concept-cloud">
+      <span class="concept-chip">kehystäminen</span><span class="concept-chip">kilpailevat kehykset</span><span class="concept-chip">diagnostinen kehys</span><span class="concept-chip">prognostinen kehys</span><span class="concept-chip">kehysresonanssi</span><span class="concept-chip">legitimiteettikamppailu</span><span class="concept-chip">ehdollistaminen</span><span class="concept-chip">johtopäätöstaktiikka</span><span class="concept-chip">myönnytystaktiikka</span><span class="concept-chip">arvoketju</span><span class="concept-chip">huoltovarmuus</span><span class="concept-chip">ravinnekierto</span><span class="concept-chip">biometaani</span><span class="concept-chip">BECCS</span><span class="concept-chip">alkuperätakuu</span><span class="concept-chip">CAP</span><span class="concept-chip">RED III</span><span class="concept-chip">LBG</span>
+    </div>
+  </div>
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Edunvalvontatoimenpiteet</div>
+    <div class="actions-wrap">
+      
+      <div class="action-item">
+        <div class="action-num">01</div>
+        <div class="action-text">Käynnistä koordinoitu viestintäkampanja, jossa MTK ja Suomen Biokierto ja Biokaasu ry yhdistävät huoltovarmuus- ja ravinnekiertokehykset yhdeksi 'maatilabiometaanin kansallinen hyöty' -viestiksi — kohdennettuna TEM:lle, MMM:lle ja eduskunnan maa- ja metsätalousvaliokunnalle ennen budjettiriihiä 2027.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">02</div>
+        <div class="action-text">Laadi konkreettinen arvoketjuanalyysi (biokierto.fi julkaisualustana), joka osoittaa viljelijän saaman taloudellisen hyödyn suhteessa teollisiin toimijoihin — käytä Kiuruveden laitoksen ja YläSavon verkoston dataa esimerkkeinä reilusta tuotonjakomallista.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">03</div>
+        <div class="action-text">Tee MTK:n lausunto CAP 2028–2034 -neuvotteluihin, jossa vaaditaan ympäristökorvausjärjestelmän uudistamista siten, että lantabiomassasta biokaasulaitokselle luovuttaminen tuottaa viljelijälle mitattavan lisäkorvauksen — sisällytä konkreettinen laskennallinen esimerkki tarvittavasta tukitasosta.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">04</div>
+        <div class="action-text">Käynnistä edunvalvontahanke tuontialkuperätakuiden hillitsemiseksi: vaadi energiavirastolta ja TEM:ltä kotimaisen biometaanin alkuperätakuujärjestelmän differentiointia tuontitakuista, jotta kotimainen maatilaperäinen tuotanto säilyttää kilpailuasemansa markkinoilla.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">05</div>
+        <div class="action-text">Vaadi alle 2 MW maatilabiokaasulaitos ten vapauttamista kestävyyskriteeriraportoinnista yhteisessä MTK–Biokierto ry -lausunnossa energiaviraston seuraavaan maksuasetuskierrokseen — perustele investointien kariutumisriski konkreettisilla laitosmäärillä.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+  <span>Luotu 17.9.2026 klo 17.34.36 · Kaplan · Hoppmann ym.</span>
+</div>
+
+
+<div class="page-break">
+  <div class="sources-cover">
+    <div class="sources-cover-icon">📎</div>
+    <div>
+      <h2>Lähteet &amp; konkretisoinnit</h2>
+      <p>Väitteiden taustat, lähdeviitteet ja sitaatit osiottain</p>
+    </div>
+  </div>
+
+  <div class="sources-body">
+    
+    <div class="source-section">
+      <div class="source-section-heading">Tilannekuva</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">TEM myönsi 16.9.2026 Suomen Lantakaasun Kiuruveden laitokselle 2,8 miljoonan euron investointiavustuksen bioperäisen CO₂:n talteenottoon.</div>
+        <div class="source-ref">📌 Työ- ja elinkeinoministeriö (TEM), investointiavustuspäätös 16.9.2026</div>
+        <div class="source-quote">*"Bioperäisen CO₂:n talteenoton investointiavustus — konkreettinen signaali siitä, että maatalouspohjainen biokaasu on julkisen rahoituksen piirissä"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Suomessa toimii 100 biokaasulaitosta, joista 31 jalostaa biometaania — tuotantokenttä on kasvava mutta hajanainen.</div>
+        <div class="source-ref">📌 Suomen Biokierto ja Biokaasu ry, toimialakartoitus / spotlight-analyysi syyskuu 2026</div>
+        <div class="source-quote">*"Maan 100 biokaasulaitosta, joista 31 jalostaa biometaania, muodostavat kasvavan, mutta edelleen hajanaisen tuotantokentän"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kilpailevat kehykset</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">MTK:n huoltovarmuus- ja kiertotalousnäkökulma sai vahvistusta pyöreän pöydän kokouksessa maaliskuussa 2025.</div>
+        <div class="source-ref">📌 MTK, pyöreän pöydän kokous 19.3.2025</div>
+        <div class="source-quote">*"Biokaasu ja ravinnekierrätys vahvistavat huoltovarmuutta"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">SYKEn sähköistys-ensisijaisuusnäkökulma tunnistaa biometaanin mahdollisuudet mutta painottaa kokonaisvaltaisempia ratkaisuja.</div>
+        <div class="source-ref">📌 SYKE, Hiilineutraali Suomi -blogi, tammikuu 2025</div>
+        <div class="source-quote">*"Biometaanin mahdollisuudet ja kompastuskivet — painotetaan kokonaisvaltaisempia, yhteistyöhön nojaavia ratkaisuja"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kehystämisdimensiot ja -taktiikat</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Tukimekanismien heikko ennakoitavuus ja lyhyet aikajänteet vaikeuttavat biokaasuinvestointien toteuttamista — erityisesti alle 2 MW laitoksilla.</div>
+        <div class="source-ref">📌 Luonnonvarakeskus (Luke), biokaasualan investointianalyysi 2025–2026</div>
+        <div class="source-quote">*"Tukimekanismien heikko ennakoitavuus ja lyhyet aikajänteet vaikeuttavat biokaasuinvestointien toteuttamista"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">CAP-muutoksessa syksyllä 2025 saatiin läpi biokaasulaitosinvestointien ulosmyyntirajoituksen poisto.</div>
+        <div class="source-ref">📌 MTK, CAP-lausunto ja seurantaraportti, syksy 2025</div>
+        <div class="source-quote">*"Ulosmyyntirajoituksen poisto — pieni voitto byrokratia- ja tukiennakoimattomuuskehykselle"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Legitimiteettitilanne</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Viljelijöillä on huoli siitä, valuvatko biokaasun päästövähennykset liikennesektorille ilman kompensaatiota viljelijälle.</div>
+        <div class="source-ref">📌 Luonnonvarakeskus (Luke), maatilabiokaasutuottajien kannattavuusanalyysi 2026</div>
+        <div class="source-quote">*"Erityisesti maatiloilla on huoli siitä, valuvatko biokaasun päästövähennykset liikennesektorille"* ilman asianmukaista kompensaatiota viljelijälle</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Nykyinen CAP-ympäristökorvausjärjestelmä ei aktiivisesti kannusta biokaasulaitoksille luovuttamiseen — vaaditut lantamäärät ovat hyvin vähäiset.</div>
+        <div class="source-ref">📌 Suomen Biokierto ja Biokaasu ry, lausunto 20.8.2025</div>
+        <div class="source-quote">*"Nykyinen CAP-ympäristökorvausjärjestelmä ei aktiivisesti kannusta biokaasulaitoksille luovuttamiseen: vaaditut lantamäärät ovat hyvin vähäiset"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Heikot signaalit</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Tuontialkuperätakuut lähes kolminkertaistuivat vuodessa: 400 GWh (2024) → 1,3 TWh (2025), mikä uhkaa kotimaisten maatilatuottajien kilpailuasemaa.</div>
+        <div class="source-ref">📌 Gasgrid Finland, alkuperätakuutilastot 2024–2025</div>
+        <div class="source-quote">*"Vuonna 2025 tuotiin ennätykselliset 1,3 TWh alkuperätakuita — lähes kolminkertaistuminen yhdessä vuodessa"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">MTK:n KiertoaSuomesta-aineistosta nousee viljelijöiden monialaisuusstrategia, jossa biokaasu on osa maatilan laajempaa resilienssikehitystä.</div>
+        <div class="source-ref">📌 MTK, KiertoaSuomesta-aineisto, toukokuu 2026</div>
+        <div class="source-quote">*"Yhden varaan ei voi enää rakentaa — monialaisuus tekee maatilasta kestävän"*</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+    <span>Sivu 2 / 2 · 17.9.2026 klo 17.34.36</span>
+  </div>
+</div>
+
+</body>
+</html>
