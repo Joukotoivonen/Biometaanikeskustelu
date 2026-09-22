@@ -2,58 +2,135 @@
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Biokaasualan kehystämiskilpailujen analyysejä</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biometaani &amp; Kehystäminen — Kehysanalyysit</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Inter',system-ui,sans-serif;background:#141820;color:#E8ECF4;min-height:100vh;line-height:1.7}
-  .hero{background:linear-gradient(160deg,#0F1A2E 0%,#141820 60%);border-bottom:1px solid #2E3650;padding:56px 40px 48px}
-  .hero-inner{max-width:820px;margin:0 auto}
-  h1{font-size:clamp(24px,3.5vw,36px);font-weight:900;letter-spacing:-.5px;margin-bottom:16px}
-  .hero-lead{font-size:16px;color:#A8B4C8;line-height:1.8;max-width:620px;margin-bottom:24px}
-  .btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#2E7D6B,#4CAF7D);color:#fff;font-weight:700;font-size:14px;padding:12px 24px;border-radius:9px;text-decoration:none;transition:opacity .15s}
-  .btn-primary:hover{opacity:.88}
-  .archive{max-width:820px;margin:48px auto;padding:0 40px 48px}
-  .archive-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#4CAF7D;margin-bottom:16px}
-  .archive-card{background:#1E2433;border:1px solid #2E3650;border-radius:12px;overflow:hidden}
-  table{width:100%;border-collapse:collapse}
-  tr{border-bottom:1px solid #2E3650}
-  tr:last-child{border-bottom:none}
-  tr:hover{background:#252B3B}
-  td{padding:14px 20px;font-size:13px;vertical-align:middle}
-  td.num{color:#4A5578;font-size:11px;font-weight:700;width:40px}
-  td.lbl a{color:#4CAF7D;text-decoration:none;font-weight:600}
-  td.lbl a:hover{text-decoration:underline}
-  td.lbl .date-sub{font-size:11px;color:#6B7AA8;margin-top:2px}
-  td.links a{color:#6B7AA8;text-decoration:none;font-size:12px;margin-right:12px}
-  td.links a:hover{color:#E8ECF4}
-  footer{text-align:center;font-size:11px;color:#4A5578;padding:32px;border-top:1px solid #2E3650}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #141820; color: #E8ECF4; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+  header { background: #1E2433; border-bottom: 1px solid #2E3650; padding: 28px 40px; }
+  header h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  header p { font-size: 13px; color: #8A93A8; }
+  .latest-link { display: inline-block; margin-top: 16px; background: linear-gradient(135deg, #2E7D6B, #4CAF7D); color: #fff; font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: 8px; text-decoration: none; }
+  main { max-width: 760px; margin: 40px auto; padding: 0 24px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #8A93A8; margin-bottom: 16px; }
+  ul { list-style: none; }
+  ul li { border-bottom: 1px solid #2E3650; }
+  ul li a { display: flex; align-items: center; gap: 14px; padding: 14px 4px; text-decoration: none; color: #E8ECF4; transition: background .15s; border-radius: 6px; }
+  ul li a:hover { background: #1E2433; padding-left: 10px; }
+  .date { font-size: 13px; font-family: monospace; color: #4CAF7D; min-width: 100px; }
+  .ttl { font-size: 14px; font-weight: 600; flex: 1; }
+  .focus { font-size: 11px; color: #8A93A8; white-space: nowrap; }
+  footer { text-align: center; font-size: 11px; color: #4A5578; padding: 32px; margin-top: 40px; border-top: 1px solid #2E3650; }
 </style>
 </head>
 <body>
-<div class="hero">
-  <div class="hero-inner">
-    <h1>Biokaasualan kehystämiskilpailujen analyysejä</h1>
-    <p class="hero-lead">Kehysanalyysejä biokaasualan julkisesta keskustelusta — Kaplan (2008) · Hoppmann ym. (2020)</p>
-    <a class="btn-primary" href="kehystamisanalyysi_2026-09-17_14-33.html">→ Uusin analyysi: 17.09.2026 klo 14:33</a>
-  </div>
-</div>
-<div class="archive">
-  <div class="archive-label">Kaikki analyysit</div>
-  <div class="archive-card">
-    <table>
-      <tr>
-          <td class="num">1</td>
-          <td class="lbl"><a href="kehystamisanalyysi_2026-09-17_14-33.html">17.09.2026 klo 14:33</a><div class="date-sub">Syyskuu 2026 — Maatalous biokaasun ytimessä: arvoketjukiistat, ravinnekiertotuki ja huoltovarmuuskehys</div></td>
-          <td class="links">
-            <a href="kehystamisanalyysi_2026-09-17_14-33.html">Avaa →</a>
-            <a href="kehystamisanalyysi_2026-09-17_14-33_tiivistelma.html">📄 Tiivistelmä</a>
-          </td>
-        </tr>
-    </table>
-  </div>
-</div>
-<footer>Kehysanalyysejä biokaasualan julkisesta keskustelusta · Päivitetty 17.9.2026 klo 17.34.39</footer>
+<header>
+  <h1>Biometaani &amp; Kehystäminen</h1>
+  <p>Kehysanalyysit biokaasualan julkisesta keskustelusta — Kaplan (2008) · Hoppmann ym. (2020)</p>
+  <a class="latest-link" href="2026-09-22.html">→ Uusin katsaus: 2026-09-22</a>
+</header>
+<main>
+  <h2>Arkisto — kaikki katsaukset</h2>
+  <ul>
+    <li>
+      <a href="2026-09-22.html">
+        <span class="date">2026-09-22</span>
+        <span class="ttl">Syyskuu 2026 — Suomen biometaani/biokaasualan kehyskilpailu</span>
+        <span class="focus">Biokaasuala (biokierto.fi, tuottajat)</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-16.html">
+        <span class="date">2026-09-16</span>
+        <span class="ttl">Syyskuu 2026 — European Biogas Association: Eurooppa lisäsi 1 bcm biometaanituotantoa</span>
+        <span class="focus">Yleiskatsaus</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-15.html">
+        <span class="date">2026-09-15</span>
+        <span class="ttl">Syyskuu 2026 — Suomen biometaani- ja biokaasukeskustelu ympäristöjärjestöjen näkökulmasta</span>
+        <span class="focus">Ympäristöjärjestöt</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-14.html">
+        <span class="date">2026-09-14</span>
+        <span class="ttl">Syyskuu 2026 — Biometaani & valtiovalta: kehyskilpailu energia-, kiertotalous- ja huoltovarmuuspolitiikassa</span>
+        <span class="focus">Valtiovalta & EU (ministeriöt, sääntely)</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-13.html">
+        <span class="date">2026-09-13</span>
+        <span class="ttl">Suomen biometaani-/biokaasukeskustelu — katsaus syyskuu 2026</span>
+        <span class="focus">Yleiskatsaus</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-12.html">
+        <span class="date">2026-09-12</span>
+        <span class="ttl">Syyskuu 2026 — Biometaani/biokaasu vs. sähköistys ja maakaasu</span>
+        <span class="focus">Kilpaileva energia-ala (sähköistys, maakaasu)</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-11.html">
+        <span class="date">2026-09-11</span>
+        <span class="ttl">Syyskuu 2026 — Biokaasualan kehystämiskilpailu Suomessa</span>
+        <span class="focus">Biokaasuala (biokierto.fi, tuottajat)</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-10.html">
+        <span class="date">2026-09-10</span>
+        <span class="ttl">Syyskuu 2026 — Biometaanin kehystämiskilpailu suomalaisessa mediassa ja julkisessa keskustelussa</span>
+        <span class="focus">Media & yleisö</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-09.html">
+        <span class="date">2026-09-09</span>
+        <span class="ttl">Viikko 37 / syyskuu 2026 — Maatalous ja biokaasu: kehystämiskilpailu kiristyy</span>
+        <span class="focus">Maatalous (viljelijät, MTK)</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-08.html">
+        <span class="date">2026-09-08</span>
+        <span class="ttl">Bioenergy News -katsaus, syyskuu 2026</span>
+        <span class="focus">Yleiskatsaus</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-07.html">
+        <span class="date">2026-09-07</span>
+        <span class="ttl">Syyskuu 2026 – Biometaani ja kilpaileva energia-ala</span>
+        <span class="focus">Kilpaileva energia-ala (sähköistys, maakaasu)</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-06.html">
+        <span class="date">2026-09-06</span>
+        <span class="ttl">Syyskuu 2026 — Suomen biometaani/biokaasukeskustelun tila</span>
+        <span class="focus">Biokaasuala (biokierto.fi, tuottajat)</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-05.html">
+        <span class="date">2026-09-05</span>
+        <span class="ttl">Suomen biometaani- ja biokaasukeskustelu — syyskuu 2026</span>
+        <span class="focus">Yleiskatsaus</span>
+      </a>
+    </li>
+    <li>
+      <a href="2026-09-04.html">
+        <span class="date">2026-09-04</span>
+        <span class="ttl">Syyskuu 2026 — Suomen biometaani- ja biokaasukeskustelun yleiskatsaus</span>
+        <span class="focus">Yleiskatsaus</span>
+      </a>
+    </li></ul>
+</main>
+<footer>Biometaani &amp; Kehystäminen · Ei API-yhteyttä tarvita tämän sivun näyttämiseen</footer>
 </body>
 </html>
