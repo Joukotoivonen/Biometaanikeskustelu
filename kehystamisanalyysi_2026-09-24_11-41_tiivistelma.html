@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suomalainen biometaani kehysanalyysikartalla – edunvalvonnan tilannekuva syyskuu 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --ink:      #0F1623;
+    --ink2:     #1E2A3A;
+    --surface:  #F5F7FA;
+    --card:     #FFFFFF;
+    --border:   #E2E8F0;
+    --muted:    #64748B;
+    --brand:    #2F8F5F;
+    --kaplan:   #B8860B;
+    --hoppmann: #9B44A8;
+    --accent:   #2F8F5F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── SIVU 1: KANSI ── */
+  .cover {
+    background: linear-gradient(135deg, #0F1623 0%, #16332A 50%, #0F1623 100%);
+    color: #fff;
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,143,95,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute; bottom: -40px; left: 30%;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-meta {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .cover-meta::before {
+    content: ''; display: inline-block;
+    width: 28px; height: 2px; background: var(--brand);
+  }
+  .cover h1 {
+    font-size: 30px; font-weight: 900; line-height: 1.15;
+    letter-spacing: -0.5px; margin-bottom: 16px; position: relative;
+  }
+  .cover-date { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+  .cover-stakeholder { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 24px; font-weight: 600; }
+  .lens-strip { display: flex; gap: 8px; flex-wrap: wrap; }
+  .lens-tag {
+    font-size: 11px; font-weight: 700; padding: 4px 12px;
+    border-radius: 20px; border: 1px solid; letter-spacing: 0.3px;
+  }
+  .lt-k { color: #F5C842; border-color: rgba(245,200,66,0.4); background: rgba(212,168,67,0.15); }
+  .lt-h { color: #D87CE8; border-color: rgba(216,124,232,0.4); background: rgba(155,68,168,0.15); }
+
+  /* ── SIVU 1: BODY ── */
+  .body-wrap { max-width: 860px; margin: 0 auto; padding: 40px 40px 20px; }
+
+  .section { margin-bottom: 28px; }
+  .section-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section h2 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.2px; }
+  .section p { color: #334155; font-size: 14px; line-height: 1.75; }
+
+  .concept-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+  .concept-chip {
+    font-size: 12px; font-weight: 600; padding: 5px 13px;
+    border-radius: 20px; background: var(--card);
+    border: 1px solid var(--border); color: var(--ink2);
+  }
+  .concept-chip:nth-child(3n+1) { border-left: 3px solid var(--brand); }
+  .concept-chip:nth-child(3n+2) { border-left: 3px solid var(--kaplan); }
+  .concept-chip:nth-child(3n+0) { border-left: 3px solid var(--hoppmann); }
+
+  .actions-wrap {
+    background: linear-gradient(135deg, #0F1623, #16332A);
+    border-radius: 12px; padding: 24px 28px; margin-top: 12px; color: #fff;
+  }
+  .action-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .action-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .action-num {
+    font-size: 22px; font-weight: 900; color: var(--brand);
+    min-width: 28px; line-height: 1.4; opacity: 0.7;
+  }
+  .action-text { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.65; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  /* ── SIVU 2: LÄHTEET ── */
+  .page-break { page-break-before: always; break-before: page; }
+
+  .sources-cover {
+    background: linear-gradient(135deg, #16332A 0%, #0F1623 100%);
+    color: #fff;
+    padding: 32px 56px 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .sources-cover-icon { font-size: 28px; opacity: 0.7; }
+  .sources-cover h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
+  .sources-cover p { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+  .sources-body { max-width: 860px; margin: 0 auto; padding: 32px 40px 40px; }
+  .source-section { margin-bottom: 32px; }
+  .source-section-heading {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .source-section-heading::before {
+    content: ''; display: inline-block;
+    width: 16px; height: 2px; background: var(--accent);
+  }
+  .source-item-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .source-item-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--brand), var(--hoppmann));
+  }
+  .source-claim { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; padding-left: 4px; }
+  .source-ref { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding-left: 4px; }
+  .source-quote {
+    font-size: 13px; font-style: italic; color: #475569; line-height: 1.7;
+    padding: 10px 14px; background: #F8FAFC; border-radius: 6px; border-left: 2px solid var(--border);
+  }
+  .source-quote::before { content: '\201C'; }
+  .source-quote::after  { content: '\201D'; }
+
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+    padding: 16px 40px;
+    background: var(--ink);
+    color: rgba(255,255,255,0.35);
+    font-size: 11px; letter-spacing: 0.3px;
+  }
+  .footer-brand { font-weight: 700; color: rgba(255,255,255,0.55); }
+
+  @media print {
+    body { background: white; }
+    .cover, .sources-cover, .actions-wrap { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-meta">Biometaani &amp; Kehystäminen · Kehysanalyysin tiivistelmä</div>
+  <h1>Suomalainen biometaani kehysanalyysikartalla – edunvalvonnan tilannekuva syyskuu 2026</h1>
+  <div class="cover-date">24.9.2026</div>
+  <div class="cover-stakeholder">Painopiste: Kilpaileva energia-ala (sähköistys, maakaasu)</div>
+  <div class="lens-strip">
+    <span class="lens-tag lt-k">Kaplan 2008</span>
+    <span class="lens-tag lt-h">Hoppmann ym. 2020</span>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  
+  <div class="section">
+    <div class="section-label">01</div>
+    <h2>Tilannekuva</h2>
+    <p>Syyskuussa 2026 biometaanikeskustelu käy samanaikaisesti kolmella rintamalla: raskaassa tieliikenteessä, teollisuuspolitiikassa ja uusiutuvan energian järjestelmäintegraatiossa. Nesteytetty biokaasu kilpailee sähkön ja vedyn kanssa raskaan kaluston päästöratkaisuna, kun sähköajoneuvojen osuus raskaan kaluston ensirekisteröinneistä on vasta 7 %. Energiateollisuus ry tunnustaa puhtaiden kaasujen roolin siellä, minne sähköistäminen ei sovellu, mikä avaa tilaa biometaanin asemoitumiselle täydentävänä – ei kilpailevana – teknologiana.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">02</div>
+    <h2>Kilpailevat kehykset</h2>
+    <p>Biokierto ja Biokaasu ry sekä maa- ja metsätalousministeriö kehystävät biometaanin maksimalistisesti: 4 TWh vuoteen 2030 ja jopa 10 TWh teoreettinen potentiaali, joilla perustellaan investointitukia ja sääntelyeliittien huomiota. Kilpaileva energia-ala taas käyttää ehdollistamisen taktiikkaa: biometaani hyväksytään vain väliaikaisena siirtymäratkaisuna, jonka korvaa lopulta suora sähköistys tai vihreä vety. MTK:n kolmijako – diesel, biokaasu ja sähkö tasavertaisina – haastaa sähköistyksen yksinomaisuusnarratiivin erityisesti maatalouslobbyssa.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">03</div>
+    <h2>Kehystämisdimensiot ja -taktiikat</h2>
+    <p>Potentiaalidimensiossa biometaanin tuottajat turvautuvat skaalatavoitteisiin ja EU-vertailuihin (Suomi EU:n 8. suurin tuottaja 2040), kun kilpaileva ala käyttää myönnytystaktiikkaa – tunnustaa biometaanin roolin kapea-alaisesti niche-sektoreissa estääkseen laajemman tukipolitiikan. Suorituskykydimensiossa korostuvat RED III -kestävyyskriteerit, joita kilpaileva ala nostaa esiin sääntelyriskiargumenttina pieniä laitoksia vastaan. Edistysdimensiossa Gasgrid-asemointi biometaanista sähköjärjestelmän joustavuuden lähteenä on strategisesti merkittävä siirto: se muuttaa kehyksen kilpailusta yhteistyöhön.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">04</div>
+    <h2>Legitimiteettitilanne</h2>
+    <p>Biometaanin legitimiteettikamppailu on tasapainoinen mutta hapero: tuotantomäärät kasvavat, mutta investori-odotukset ovat herkät sääntelymuutoksille. Energiaviraston kertaluonteinen BioCCS-tukihaku tammikuussa 2026 viestii, että hallinto tunnistaa biometaanin potentiaalin mutta ei ole valmis pysyviin tukirakenteisiin. Legitimiteetti nojaa tällä hetkellä vahvimmin maataloussektorin ja raskaan liikenteen koalitioihin, joiden poliittinen paino on huomattava.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">05</div>
+    <h2>Heikot signaalit</h2>
+    <p>Gasgrid kehystää kaasut sähköjärjestelmän joustavuuden lähteiksi – signaali siitä, että biometaani hakee liittolaisia sähköistäjistä, ei kilpaile näitä vastaan. Energiaviraston BioCCS-hakukierros viittaa siihen, että biometaani+hiilitalteenotto-yhdistelmä nousee seuraavaksi kehyskamppailun kohteeksi. RED III:n kansallinen toimeenpano heinäkuusta 2025 alkaen ohjaa investointeja suurempiin laitoksiin, mikä voi muuttaa alan rakenteen ja edunvalvontakoalition kokoonpanon.</p>
+  </div>
+  
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Avaintermit</div>
+    <div class="concept-cloud">
+      <span class="concept-chip">kehystäminen</span><span class="concept-chip">kilpailevat kehykset</span><span class="concept-chip">ehdollistaminen</span><span class="concept-chip">myönnytystaktiikka</span><span class="concept-chip">johtopäätöstaktiikka</span><span class="concept-chip">legitimiteettikamppailu</span><span class="concept-chip">potentiaalidimensio</span><span class="concept-chip">suorituskykydimensio</span><span class="concept-chip">edistysdimensio</span><span class="concept-chip">näkymädimensio</span><span class="concept-chip">BioCCS</span><span class="concept-chip">RED III</span>
+    </div>
+  </div>
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Edunvalvontatoimenpiteet</div>
+    <div class="actions-wrap">
+      
+      <div class="action-item">
+        <div class="action-num">01</div>
+        <div class="action-text">Käynnistä Gasgrid-yhteistyö biometaanin sähköjärjestelmäjoustavuusnarratiivin rakentamiseksi: tuota biokierto.fi:lle yhteinen faktapohja siitä, kuinka biometaani tasapainottaa vaihtelevaa uusiutuvaa energiaa – tämä neutraloi sähköistäjien kilpailuasetelman muuttamalla sen kumppanuusasetelmaksi.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">02</div>
+        <div class="action-text">Laadi raskaan liikenteen päättäjille suunnattu vertailulaskelma (biokaasu vs. sähkö vs. vety) ensirekisteröintidatan pohjalta ja toimita se liikenne- ja viestintäministeriölle sekä keskeisille liikennevaliokunnan jäsenille ennen syysistuntokauden budjettikäsittelyä.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">03</div>
+        <div class="action-text">Käynnistä MTK-koalition kautta pysyvä 'kolmijako-narratiivi' raskaan liikenteen käyttövoimakeskusteluun: vakiinnuta biokaasu, diesel ja sähkö tasavertaisina vaihtoehtoina virallisiin lausuntoihin ja eduskuntakuulemisiin, jotta sähköistyksen yksinomaisuuskehys ei pääse hallitsemaan politiikkavalmistelussa.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">04</div>
+        <div class="action-text">Valmistele Energiavirastolle kirjallinen ehdotus BioCCS-tukirakenteen vakiinnuttamiseksi kertaluonteisesta hausta jatkuvaksi järjestelmäksi, käyttäen perusteluna biometaani+hiilitalteenotto-yhdistelmän ilmastohyötyä suhteessa suoran sähköistyksen CDR-kustannuksiin – julkaise samanaikaisesti biokierto.fi:ssä avoin vaikuttavuuslaskelma.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+  <span>Luotu 24.9.2026 klo 14.42.53 · Kaplan · Hoppmann ym.</span>
+</div>
+
+
+<div class="page-break">
+  <div class="sources-cover">
+    <div class="sources-cover-icon">📎</div>
+    <div>
+      <h2>Lähteet &amp; konkretisoinnit</h2>
+      <p>Väitteiden taustat, lähdeviitteet ja sitaatit osiottain</p>
+    </div>
+  </div>
+
+  <div class="sources-body">
+    
+    <div class="source-section">
+      <div class="source-section-heading">Tilannekuva</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Sähköajoneuvojen osuus raskaan kaluston ensirekisteröinneistä on vain 7 %</div>
+        <div class="source-ref">📌 Lähde: YLE, elokuu 2025</div>
+        <div class="source-quote">*"Dieselin ylivalta horjuu ensimmäistä kertaa ja nesteytetty biokaasu kilpailee sähkön ja vedyn rinnalla dominoivaksi päästövähennysratkaisuksi"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Energiateollisuus ry tunnustaa puhtaiden kaasujen roolin hiilineutraaliuden saavuttamisessa</div>
+        <div class="source-ref">📌 Lähde: Energiateollisuus ry, lausunto kesäkuu 2026</div>
+        <div class="source-quote">*"Puhtailla kaasuilla voidaan saavuttaa hiilineutraalius siellä, minne sähköistäminen ei sovellu"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kilpailevat kehykset</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Biokierto ja Biokaasu ry projisoi 4 TWh:n tuotantotavoitteen vuoteen 2030 ja 10 TWh:n teoreettisen potentiaalin</div>
+        <div class="source-ref">📌 Lähde: biokierto.fi, skenaario 2024</div>
+        <div class="source-quote">*"Suomen biometaanintuotannon teoreettinen potentiaali on jopa 10 TWh, ja vuoden 2030 tavoite on 4 TWh"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">MTK käyttää kolmijakoa – diesel, biokaasu ja sähkö tasavertaisina – raskaan liikenteen käyttövoimakeskustelussa</div>
+        <div class="source-ref">📌 Lähde: MTK, eduskuntakatsaus helmikuu 2026</div>
+        <div class="source-quote">*"Raskaan liikenteen käyttövoimamurroksessa kolme tasavertaista voimaa: diesel, biokaasu ja sähkö"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kehystämisdimensiot ja -taktiikat</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Suomi arvioidaan EU:n kahdeksanneksi suurimmaksi biometaanintuottajaksi vuoteen 2040 mennessä</div>
+        <div class="source-ref">📌 Lähde: biotalous.fi, 2024</div>
+        <div class="source-quote">*"Suomi on EU:n 8. suurin biometaanintuottaja vuonna 2040"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Gasgrid kehystää kaasut vaihtelevaa uusiutuvaa energiaa tasapainottaviksi joustavuuden lähteiksi</div>
+        <div class="source-ref">📌 Lähde: Gasgrid, 'Kaasujen tulevaisuus: Vakaa energiajärjestelmä' -tilaisuus, kesäkuu 2026</div>
+        <div class="source-quote">*"Kaasut kehystettiin vaihtelevaa uusiutuvaa energiaa tasapainottaviksi flexibiliteetin lähteiksi"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Legitimiteettitilanne</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Energiavirasto sisällytti bioperäisen hiilidioksidin talteenottohankkeita tukisalkkuunsa tammikuussa 2026, mutta vain kertaluonteiseen hakuun</div>
+        <div class="source-ref">📌 Lähde: Energiavirasto, tukihaku tammikuu 2026</div>
+        <div class="source-quote">*"Biokaasun BioCCS-yhdistelmä saattaa nousta seuraavaksi kehyskamppailun kohteeksi"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">RED III:n kestävyyskriteerien kansallinen toimeenpano tuli voimaan Suomessa heinäkuussa 2025</div>
+        <div class="source-ref">📌 Lähde: RED III -direktiivin kansallinen toimeenpano, Suomi, heinäkuu 2025</div>
+        <div class="source-quote">*"Sääntelyriskiprofiilin kasvu saattaa siirtää investoriodotuksia pois pienemmistä biokaasulaitoksista kohti suurempia, skaalattavampia hankkeita"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Heikot signaalit</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Gasgrid asemoi biometaanin sähköjärjestelmän joustavuuden lähteeksi kilpailijan sijaan</div>
+        <div class="source-ref">📌 Lähde: Gasgrid, 'Kaasujen tulevaisuus: Vakaa energiajärjestelmä' -tilaisuus, kesäkuu 2026</div>
+        <div class="source-quote">*"Heikko signaali siitä, että biometaani hakee uutta roolia sähköjärjestelmän tukijana, ei kilpailijana, mikä voisi muuttaa kehysasetelmaa ratkaisevasti"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">MTK:n kolmijako haastaa sähköistyksen yksinomaisuusnarratiivin maatalouslobbyssa</div>
+        <div class="source-ref">📌 Lähde: MTK, eduskuntakatsaus helmikuu 2026</div>
+        <div class="source-quote">*"Biometaanin 'siirtymäkausiasema' on muuttumassa pysyvämmäksi narratiiviksi, mikä haastaa sähköistyksen yksinomaisuusnarratiivit erityisesti maa- ja metsätalouslobbyssa"*</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+    <span>Sivu 2 / 2 · 24.9.2026 klo 14.42.53</span>
+  </div>
+</div>
+
+</body>
+</html>
