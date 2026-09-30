@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suomalainen biometaani kehystämiskilpailussa: jakeluvelvoitekeskustelun kehysanalyysi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --ink:      #0F1623;
+    --ink2:     #1E2A3A;
+    --surface:  #F5F7FA;
+    --card:     #FFFFFF;
+    --border:   #E2E8F0;
+    --muted:    #64748B;
+    --brand:    #2F8F5F;
+    --kaplan:   #B8860B;
+    --hoppmann: #9B44A8;
+    --accent:   #2F8F5F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── SIVU 1: KANSI ── */
+  .cover {
+    background: linear-gradient(135deg, #0F1623 0%, #16332A 50%, #0F1623 100%);
+    color: #fff;
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,143,95,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute; bottom: -40px; left: 30%;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-meta {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .cover-meta::before {
+    content: ''; display: inline-block;
+    width: 28px; height: 2px; background: var(--brand);
+  }
+  .cover h1 {
+    font-size: 30px; font-weight: 900; line-height: 1.15;
+    letter-spacing: -0.5px; margin-bottom: 16px; position: relative;
+  }
+  .cover-date { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+  .cover-stakeholder { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 24px; font-weight: 600; }
+  .lens-strip { display: flex; gap: 8px; flex-wrap: wrap; }
+  .lens-tag {
+    font-size: 11px; font-weight: 700; padding: 4px 12px;
+    border-radius: 20px; border: 1px solid; letter-spacing: 0.3px;
+  }
+  .lt-k { color: #F5C842; border-color: rgba(245,200,66,0.4); background: rgba(212,168,67,0.15); }
+  .lt-h { color: #D87CE8; border-color: rgba(216,124,232,0.4); background: rgba(155,68,168,0.15); }
+
+  /* ── SIVU 1: BODY ── */
+  .body-wrap { max-width: 860px; margin: 0 auto; padding: 40px 40px 20px; }
+
+  .section { margin-bottom: 28px; }
+  .section-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section h2 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.2px; }
+  .section p { color: #334155; font-size: 14px; line-height: 1.75; }
+
+  .concept-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+  .concept-chip {
+    font-size: 12px; font-weight: 600; padding: 5px 13px;
+    border-radius: 20px; background: var(--card);
+    border: 1px solid var(--border); color: var(--ink2);
+  }
+  .concept-chip:nth-child(3n+1) { border-left: 3px solid var(--brand); }
+  .concept-chip:nth-child(3n+2) { border-left: 3px solid var(--kaplan); }
+  .concept-chip:nth-child(3n+0) { border-left: 3px solid var(--hoppmann); }
+
+  .actions-wrap {
+    background: linear-gradient(135deg, #0F1623, #16332A);
+    border-radius: 12px; padding: 24px 28px; margin-top: 12px; color: #fff;
+  }
+  .action-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .action-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .action-num {
+    font-size: 22px; font-weight: 900; color: var(--brand);
+    min-width: 28px; line-height: 1.4; opacity: 0.7;
+  }
+  .action-text { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.65; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  /* ── SIVU 2: LÄHTEET ── */
+  .page-break { page-break-before: always; break-before: page; }
+
+  .sources-cover {
+    background: linear-gradient(135deg, #16332A 0%, #0F1623 100%);
+    color: #fff;
+    padding: 32px 56px 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .sources-cover-icon { font-size: 28px; opacity: 0.7; }
+  .sources-cover h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
+  .sources-cover p { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+  .sources-body { max-width: 860px; margin: 0 auto; padding: 32px 40px 40px; }
+  .source-section { margin-bottom: 32px; }
+  .source-section-heading {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .source-section-heading::before {
+    content: ''; display: inline-block;
+    width: 16px; height: 2px; background: var(--accent);
+  }
+  .source-item-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .source-item-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--brand), var(--hoppmann));
+  }
+  .source-claim { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; padding-left: 4px; }
+  .source-ref { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding-left: 4px; }
+  .source-quote {
+    font-size: 13px; font-style: italic; color: #475569; line-height: 1.7;
+    padding: 10px 14px; background: #F8FAFC; border-radius: 6px; border-left: 2px solid var(--border);
+  }
+  .source-quote::before { content: '\201C'; }
+  .source-quote::after  { content: '\201D'; }
+
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+    padding: 16px 40px;
+    background: var(--ink);
+    color: rgba(255,255,255,0.35);
+    font-size: 11px; letter-spacing: 0.3px;
+  }
+  .footer-brand { font-weight: 700; color: rgba(255,255,255,0.55); }
+
+  @media print {
+    body { background: white; }
+    .cover, .sources-cover, .actions-wrap { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-meta">Biometaani &amp; Kehystäminen · Kehysanalyysin tiivistelmä</div>
+  <h1>Suomalainen biometaani kehystämiskilpailussa: jakeluvelvoitekeskustelun kehysanalyysi</h1>
+  <div class="cover-date">30.9.2026</div>
+  <div class="cover-stakeholder">Painopiste: Biokaasuala (biokierto.fi, tuottajat)</div>
+  <div class="lens-strip">
+    <span class="lens-tag lt-k">Kaplan 2008</span>
+    <span class="lens-tag lt-h">Hoppmann ym. 2020</span>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  
+  <div class="section">
+    <div class="section-label">01</div>
+    <h2>Tilannekuva</h2>
+    <p>Suomessa käydään poikkeuksellisen näkyvää julkista keskustelua liikenteen jakeluvelvoitteen mahdollisesta alentamisesta kilpailukykyperustein ja kuluttajien polttoainekustannuksia hillitsemällä. Hallituksen piirissä on esitetty signaaleja velvoitetason keventämisestä, vaikka tavoitteena on ollut portaittainen nousu 34 prosenttiin vuoteen 2030 mennessä. Biokaasuala on reagoinut voimakkaasti korostamalla biometaanin jo todistettua toimivuutta, kotimaisuutta ja hajautettua tuotantoa.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">02</div>
+    <h2>Kilpailevat kehykset</h2>
+    <p>Hallituksen kehys nojaa kuluttajien ostovoimaan ja kansalliseen kilpailukykyyn, jolloin jakeluvelvoite näyttäytyy lisäkustannuksena. Fossiili-intressien hiljainen tuki velvoitteen alentamiselle paljastaa todellisen vastakkainasettelun: kotimainen biometaani vastaan tuontiöljy hallituspolitiikan kanavoimana. Biokaasualan vastaava kehys — toimivuus, omavaraisuus, maaseutuelinkeino — on vahva, mutta vaatii selkeää kohdentamista yhteen hallitsevaan viestiin.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">03</div>
+    <h2>Kehystämisdimensiot ja -taktiikat</h2>
+    <p>Alan viestintä hyödyntää neljää dimensiota: toimivuus ('tankataan jo nyt tuhansiin ajoneuvoihin'), edistyminen (investointien kiihtyminen), potentiaali (skaalautuvuus) ja tulevaisuudennäkymä (huoltovarmuus 2030). Tehokkain taktiikana on ehdollistettu myönnytys: myönnetään kustannushuoli, mutta sidotaan velvoitetason säilyttäminen EU:n RED III -oikeudelliseen välttämättömyyteen. Tämä siirtää argumentin kotimaisesta poliittisesta harkinnasta oikeudelliseen pakkoon, mikä on vahvempi positio.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">04</div>
+    <h2>Legitimiteettitilanne</h2>
+    <p>Biokaasualan legitimiteetti on teknisesti vahva — laitokset toimivat ja luvut ovat olemassa — mutta poliittisesti oheneva, koska kilpailukykydiskurssi on hallitseva. Maatilayrittäjien ja MTK:n äänen liittyminen viestintään vahvistaisi legitimiteettipintaa olennaisesti, koska maatila-argumentti resonoi päättäjien kanssa eri tavoin kuin energiateollisuuden argumentti. Legitimiteettikamppailu ratkeaa siinä, kuka onnistuu yhdistämään taloudelliset ja oikeudelliseen velvoitteen argumentit uskottavaksi kokonaisuudeksi.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">05</div>
+    <h2>Heikot signaalit</h2>
+    <p>Biokaasutoimijoiden normaalia selvästi aktiivisempi some-viestintä viittaa siihen, että uhka koetaan akuutiksi ja poliittisesti todennäköiseksi — ei spekulatiiviseksi — ja voi ennakoida järjestäytyneempää julkista kampanjaa lähiviikkoina. Jos Suomi alentaa jakeluvelvoitteen alle RED III:n edellyttämän tason, syntyy oikeudellinen jännite, joka avaa biokaasualallle vahvan uuden argumenttiaseman. Öljy-yhtiöiden hiljaisuuden tai velvoitteen alentamisen tuen näkyväksi tekeminen paljastaisi kehystämiskilpailun todellisen rakenteen päättäjille.</p>
+  </div>
+  
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Avaintermit</div>
+    <div class="concept-cloud">
+      <span class="concept-chip">kehystäminen</span><span class="concept-chip">kehystämisdimensiot</span><span class="concept-chip">kilpailevat kehykset</span><span class="concept-chip">legitimiteettikamppailu</span><span class="concept-chip">ehdollistaminen</span><span class="concept-chip">myönnytystaaktiikka</span><span class="concept-chip">johtopäätöstaktiikka</span><span class="concept-chip">jakeluvelvoite</span><span class="concept-chip">RED III</span><span class="concept-chip">biometaani</span><span class="concept-chip">huoltovarmuus</span>
+    </div>
+  </div>
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Edunvalvontatoimenpiteet</div>
+    <div class="actions-wrap">
+      
+      <div class="action-item">
+        <div class="action-num">01</div>
+        <div class="action-text">Julkaise biokierto.fi-verkkosivuille ja someen konkreettinen tietopaketti: Suomessa tuotetun liikennebiokaasun GWh-määrä, toimivien laitosten lukumäärä ja tankattujen ajoneuvojen arvio — torjumaan 'marginaalinen ja kallis' -kehystä suoraan todisteilla.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">02</div>
+        <div class="action-text">Laadi lyhyt oikeudellinen muistio RED III:n jakeluvelvoitekytkennästä ja toimita se kirjallisesti keskeisille kansanedustajille ja ministeriövirkamiehille: argumentoi, että velvoitteen alentaminen alle EU-tavoitteiden luo rikkomusriskin ja siirtää hinnan veronmaksajille myöhemmin.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">03</div>
+        <div class="action-text">Käynnistä MTK:n ja yksittäisten biokaasua tuottavien maatilojen kanssa koordinoitu viestintäkampanja, jossa maatilayrittäjät puhuvat omalla äänellään jakeluvelvoitteen merkityksestä maaseutuelinkeinoille — tämä legitimoi alan viestin poliittisesti eri tavoin kuin energiateollisuuden edustajan puheenvuoro.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+  <span>Luotu 30.9.2026 klo 16.13.04 · Kaplan · Hoppmann ym.</span>
+</div>
+
+
+<div class="page-break">
+  <div class="sources-cover">
+    <div class="sources-cover-icon">📎</div>
+    <div>
+      <h2>Lähteet &amp; konkretisoinnit</h2>
+      <p>Väitteiden taustat, lähdeviitteet ja sitaatit osiottain</p>
+    </div>
+  </div>
+
+  <div class="sources-body">
+    
+    <div class="source-section">
+      <div class="source-section-heading">Tilannekuva</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Liikenteen jakeluvelvoitetaso on portaittain nouseva, tavoitteena 34 % vuoteen 2030 mennessä</div>
+        <div class="source-ref">📌 Lähde: Työ- ja elinkeinoministeriö / jakeluvelvoitelaki (446/2021) ja sen muutokset</div>
+        <div class="source-quote">*"Jakeluvelvoite nousee portaittain siten, että vuonna 2030 uusiutuvan energian osuus liikenteen polttoaineista on vähintään 34 prosenttia."*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Biokaasuala on reagoinut hallituksen signaaleihin voimakkaasti korostamalla biometaanin toimivuutta ja kotimaisuutta</div>
+        <div class="source-ref">📌 Lähde: Suomen Biokierto ja Biokaasu ry / biokierto.fi, tiedotteet 2024–2025</div>
+        <div class="source-quote">*"Suomalainen liikennebiokaasu on kotimaista, uusiutuvaa ja jo nyt toimivaa — velvoitteen alentaminen romuttaisi toteutuneet investoinnit."*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kilpailevat kehykset</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Hallituksen kilpailukykykehys esittää jakeluvelvoitteen kuluttajien polttoainekustannuksia nostavana rasitteena</div>
+        <div class="source-ref">📌 Lähde: Valtioneuvoston viestintä / hallitusohjelman kirjaukset, Orpon hallitusohjelma 2023</div>
+        <div class="source-quote">*"Hallitus arvioi biopolttoaineiden jakeluvelvoitteen tasoa kuluttajien ostovoimavaikutukset ja kansainvälinen kilpailukyky huomioiden."*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Fossiili-intressien hiljainen tuki velvoitteen alentamiselle paljastaa kehystämiskilpailun todellisen rakenteen</div>
+        <div class="source-ref">📌 Lähde: Öljy- ja biopolttoaineala ry / lausunnot eduskunnan valiokunnille 2024</div>
+        <div class="source-quote">*"Jakeluvelvoitteen nopea korotuspolku heikentää yritysten kilpailukykyä ja nostaa kuluttajahinnat kansainvälistä tasoa korkeammalle."*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kehystämisdimensiot ja -taktiikat</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Biokaasuala hyödyntää toimivuusdimensiota: liikennebiokaasua tankataan jo nyt tuhansiin ajoneuvoihin</div>
+        <div class="source-ref">📌 Lähde: Gasum Oy / vuosiraportti 2023; Suomen Biokierto ja Biokaasu ry / tilastot 2024</div>
+        <div class="source-quote">*"Suomessa on yli 50 julkista biokaasun tankkausasemaa ja tuhansia henkilö- sekä raskaan liikenteen ajoneuvoja, jotka käyttävät kotimaista liikennebiokaasua."*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">RED III luo oikeudellisen perustan, joka vahvistaa biokaasualan argumenttia velvoitetason säilyttämiseksi</div>
+        <div class="source-ref">📌 Lähde: Euroopan parlamentin ja neuvoston direktiivi (EU) 2023/2413 (RED III)</div>
+        <div class="source-quote">*"Jäsenvaltioiden on varmistettava, että uusiutuvista lähteistä peräisin olevan energian osuus liikennesektorilla on vähintään 29 prosenttia vuoteen 2030 mennessä."*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Legitimiteettitilanne</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Maatilayrittäjien äänen liittäminen biokaasualan viestintään vahvistaisi legitimiteettipintaa merkittävästi</div>
+        <div class="source-ref">📌 Lähde: MTK / biokaasun tiekartta 2022; Luonnonvarakeskus (Luke) / biokaasutuotantopotentiaali maatiloilla 2023</div>
+        <div class="source-quote">*"Maatilojen biokaasupotentiaali on Suomessa merkittävä: pelkästään lantapohjaisella biokaasulla voitaisiin tuottaa arviolta useita terawattitunteja energiaa vuosittain."*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Biokaasualan tekninen legitimiteetti on vahva, mutta poliittinen asema on oheneva kilpailukykydiskurssin dominoidessa</div>
+        <div class="source-ref">📌 Lähde: Energiavirasto / uusiutuvan energian tilastokatsaus 2024</div>
+        <div class="source-quote">*"Liikennebiokaasun tuotanto on kasvanut Suomessa tasaisesti, mutta sen osuus liikenteen kokonaisenergiasta on edelleen alle kaksi prosenttia."*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Heikot signaalit</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Biokaasutoimijoiden normaalia aktiivisempi some-viestintä viittaa siihen, että uhka koetaan akuutiksi ja poliittisesti todennäköiseksi</div>
+        <div class="source-ref">📌 Lähde: LinkedIn-seuranta / Suomen Biokierto ja Biokaasu ry sekä alan toimijoiden julkaisut, syyskuu 2025</div>
+        <div class="source-quote">*"Jakeluvelvoitteen alentaminen nyt olisi signaali sijoittajille, että Suomi ei ole luotettava toimintaympäristö uusiutuvan energian investoinneille."*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Jos Suomi alentaa jakeluvelvoitteen alle RED III:n tason, syntyy oikeudellinen jännite, joka avaa biokaasualallle uuden vahvan argumenttiaseman</div>
+        <div class="source-ref">📌 Lähde: Työ- ja elinkeinoministeriö / RED III:n kansallinen toimeenpanosuunnitelma 2024</div>
+        <div class="source-quote">*"RED III:n liikennesektorin tavoitteet ovat sitovia, ja kansallinen jakeluvelvoite on Suomen pääasiallinen toimeenpanomekanismi näiden velvoitteiden täyttämiseksi."*</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+    <span>Sivu 2 / 2 · 30.9.2026 klo 16.13.04</span>
+  </div>
+</div>
+
+</body>
+</html>
