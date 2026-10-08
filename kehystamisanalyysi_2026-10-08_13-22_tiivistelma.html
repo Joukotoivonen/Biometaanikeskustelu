@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biometaani kuljetusalan kehystämiskamppailussa — tilannekuva syksyllä 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --ink:      #0F1623;
+    --ink2:     #1E2A3A;
+    --surface:  #F5F7FA;
+    --card:     #FFFFFF;
+    --border:   #E2E8F0;
+    --muted:    #64748B;
+    --brand:    #2F8F5F;
+    --kaplan:   #B8860B;
+    --hoppmann: #9B44A8;
+    --accent:   #2F8F5F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── SIVU 1: KANSI ── */
+  .cover {
+    background: linear-gradient(135deg, #0F1623 0%, #16332A 50%, #0F1623 100%);
+    color: #fff;
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,143,95,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute; bottom: -40px; left: 30%;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-meta {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .cover-meta::before {
+    content: ''; display: inline-block;
+    width: 28px; height: 2px; background: var(--brand);
+  }
+  .cover h1 {
+    font-size: 30px; font-weight: 900; line-height: 1.15;
+    letter-spacing: -0.5px; margin-bottom: 16px; position: relative;
+  }
+  .cover-date { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+  .cover-stakeholder { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 24px; font-weight: 600; }
+  .lens-strip { display: flex; gap: 8px; flex-wrap: wrap; }
+  .lens-tag {
+    font-size: 11px; font-weight: 700; padding: 4px 12px;
+    border-radius: 20px; border: 1px solid; letter-spacing: 0.3px;
+  }
+  .lt-k { color: #F5C842; border-color: rgba(245,200,66,0.4); background: rgba(212,168,67,0.15); }
+  .lt-h { color: #D87CE8; border-color: rgba(216,124,232,0.4); background: rgba(155,68,168,0.15); }
+
+  /* ── SIVU 1: BODY ── */
+  .body-wrap { max-width: 860px; margin: 0 auto; padding: 40px 40px 20px; }
+
+  .section { margin-bottom: 28px; }
+  .section-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section h2 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.2px; }
+  .section p { color: #334155; font-size: 14px; line-height: 1.75; }
+
+  .concept-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+  .concept-chip {
+    font-size: 12px; font-weight: 600; padding: 5px 13px;
+    border-radius: 20px; background: var(--card);
+    border: 1px solid var(--border); color: var(--ink2);
+  }
+  .concept-chip:nth-child(3n+1) { border-left: 3px solid var(--brand); }
+  .concept-chip:nth-child(3n+2) { border-left: 3px solid var(--kaplan); }
+  .concept-chip:nth-child(3n+0) { border-left: 3px solid var(--hoppmann); }
+
+  .actions-wrap {
+    background: linear-gradient(135deg, #0F1623, #16332A);
+    border-radius: 12px; padding: 24px 28px; margin-top: 12px; color: #fff;
+  }
+  .action-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .action-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .action-num {
+    font-size: 22px; font-weight: 900; color: var(--brand);
+    min-width: 28px; line-height: 1.4; opacity: 0.7;
+  }
+  .action-text { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.65; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  /* ── SIVU 2: LÄHTEET ── */
+  .page-break { page-break-before: always; break-before: page; }
+
+  .sources-cover {
+    background: linear-gradient(135deg, #16332A 0%, #0F1623 100%);
+    color: #fff;
+    padding: 32px 56px 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .sources-cover-icon { font-size: 28px; opacity: 0.7; }
+  .sources-cover h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
+  .sources-cover p { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+  .sources-body { max-width: 860px; margin: 0 auto; padding: 32px 40px 40px; }
+  .source-section { margin-bottom: 32px; }
+  .source-section-heading {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .source-section-heading::before {
+    content: ''; display: inline-block;
+    width: 16px; height: 2px; background: var(--accent);
+  }
+  .source-item-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .source-item-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--brand), var(--hoppmann));
+  }
+  .source-claim { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; padding-left: 4px; }
+  .source-ref { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding-left: 4px; }
+  .source-quote {
+    font-size: 13px; font-style: italic; color: #475569; line-height: 1.7;
+    padding: 10px 14px; background: #F8FAFC; border-radius: 6px; border-left: 2px solid var(--border);
+  }
+  .source-quote::before { content: '\201C'; }
+  .source-quote::after  { content: '\201D'; }
+
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+    padding: 16px 40px;
+    background: var(--ink);
+    color: rgba(255,255,255,0.35);
+    font-size: 11px; letter-spacing: 0.3px;
+  }
+  .footer-brand { font-weight: 700; color: rgba(255,255,255,0.55); }
+
+  @media print {
+    body { background: white; }
+    .cover, .sources-cover, .actions-wrap { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-meta">Biometaani &amp; Kehystäminen · Kehysanalyysin tiivistelmä</div>
+  <h1>Biometaani kuljetusalan kehystämiskamppailussa — tilannekuva syksyllä 2026</h1>
+  <div class="cover-date">8.10.2026</div>
+  <div class="cover-stakeholder">Painopiste: Kuljetusala</div>
+  <div class="lens-strip">
+    <span class="lens-tag lt-k">Kaplan 2008</span>
+    <span class="lens-tag lt-h">Hoppmann ym. 2020</span>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  
+  <div class="section">
+    <div class="section-label">01</div>
+    <h2>Tilannekuva</h2>
+    <p>Suomen biometaani- ja biokaasukeskustelu on syksyllä 2026 erityisen tulehtunut kuljetusalan kannalta: kolme samanaikaista kehystämispaikkaa kilpailevat huomiosta. Jakeluvelvoitteen mahdollinen heikentäminen dieselin hintapaineessa, Traficomin ACE-hankkeen sidosryhmäprosessi raskaassa liikenteessä sekä Suomen Lantakaasun uusien LBG-laitosten käynnistyminen (Kiuruvesi heinäkuu, Nurmes elokuu 2026) muovaavat kaikki samanaikaisesti alan kehystämiskontekstia. SBB:n arvion mukaan 900 miljoonan euron investoinnit ovat uhattuna, mikäli kysyntäpohja ei vakiinnu.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">02</div>
+    <h2>Kilpailevat kehykset</h2>
+    <p>Neljä kilpailevaa kehystä on tunnistettavissa: (1) biokaasu kustannustehokkaana siirtymäpolttoaineena raskaaseen liikenteeseen nyt (SKAL, Gasum, kuljetusyritykset), (2) sähköistyminen ainoana kestävänä suuntana — biokaasu 'ostaa vain aikaa' (SYKE, osa tutkijoista), (3) biokaasu kotimaisena huoltovarmuus- ja kiertotalousratkaisuna (MTK, SBB, MMM) sekä (4) biokaasu marginaaliratkaisuna, jonka raaka-aine on rajallinen eikä roolia ole turvattu EU-sääntelyssä (osa Traficomin ACE-prosessin osallistujista). Kuljetusalan edunvalvonnalle suotuisin kehys yhdistää kehykset 1 ja 3.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">03</div>
+    <h2>Kehystämisdimensiot ja -taktiikat</h2>
+    <p>Keskeinen taktinen valinta on siirtymä potentiaali-puheesta performanssi-puheeseen: SBB:n lausunto (26.8.2026) toteaa biokaasun olevan 'tällä hetkellä raskaan liikenteen yleisin vaihtoehtoinen käyttövoima Suomessa', mikä on kategorinen legitimiteettilause. Kustannustehokkuusargumentti resonoi poikkeuksellisen hyvin syksyn budjettiriihen kontekstissa, kun diesel kallistuu ja kuljetusyritysten kannattavuus heikkenee. Myönnytystaktiikkana voidaan käyttää biometaanin asemoimista täydentäväksi — ei kilpailevaksi — sähköistymisen kanssa pitkällä aikavälillä.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">04</div>
+    <h2>Legitimiteettitilanne</h2>
+    <p>Biometaanin legitimiteetti kuljetusalan pysyvänä ratkaisuna on kiistanalainen kahdesta syystä: EU:n kuorma-autojen CO2-raja-arvoasetus suosii nollapäästöisiä ajoneuvoja eikä tunnista biometaanin elinkaaripäästöjä kuten RED III tekee, ja jakeluvelvoitteen mahdollinen heikentäminen uhkaa kysyntäpohjan rahoituspohjaa. Vastaväite 'investoinnit lukitsevat kaluston väärään teknologiaan' (Traficom ACE 16.2.2026) on aktiivisessa käytössä. SKAL on kirjannut eksplisiittisesti, että biokaasun asema on varmistettava EU-tason päätöksenteossa.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">05</div>
+    <h2>Heikot signaalit</h2>
+    <p>Kolme heikkoa signaalia ansaitsee seurannan: FinMobilityn koordinoitu EU-kannanotto teknologianeutraalisuudesta (kesä 2026) viittaa Eurooppa-tason yhteisrintaman muodostumiseen, mikä voi muuttaa EU-tason kehystämiskontekstia merkittävästi. Kasvava kysyntä–tuotanto-kuilu voi avata uuden kehystämisdimension 'kotimainen vs. tuontibiometaani', joka haastaa nykyisen huoltovarmuuskehyksen sisältä. Biokaasukuorma-autojen rekisteröintien 96 prosentin kasvu on konkreettinen performanssiargumentti, jota ei vielä hyödynnetä täysimääräisesti edunvalvontaviestinnässä.</p>
+  </div>
+  
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Avaintermit</div>
+    <div class="concept-cloud">
+      <span class="concept-chip">kehystäminen</span><span class="concept-chip">kilpailevat kehykset</span><span class="concept-chip">legitimiteettikamppailu</span><span class="concept-chip">kehystämisresonanssi</span><span class="concept-chip">diagnostinen kehys</span><span class="concept-chip">prognostinen kehys</span><span class="concept-chip">ehdollistaminen</span><span class="concept-chip">myönnytystaktiikka</span><span class="concept-chip">performanssi-puhe</span><span class="concept-chip">LBG</span><span class="concept-chip">RED III</span><span class="concept-chip">EU</span><span class="concept-chip">SBB</span><span class="concept-chip">SKAL</span><span class="concept-chip">ACE</span>
+    </div>
+  </div>
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Edunvalvontatoimenpiteet</div>
+    <div class="actions-wrap">
+      
+      <div class="action-item">
+        <div class="action-num">01</div>
+        <div class="action-text">Vahvista performanssi-puheen kehystämistä julkaisemalla SBB:n koordinoimana kuukausittainen tilastopäivitys biokaasukuorma-autojen rekisteröinneistä ja ajetuista kilometreistä — konkretisoi 'yleisin vaihtoehtoinen käyttövoima' -väite mitattavilla luvuilla biokierto.fi-verkkosivuilla ja somekanavissa.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">02</div>
+        <div class="action-text">Laadi SKAL:n kanssa yhteinen kirjallinen kannanotto jakeluvelvoitteen säilyttämisestä budjettiriiheen viitaten suoraan 900 miljoonan euron investointiuhkaan ja LBG-laitosten (Kiuruvesi, Nurmes) luomaan kotimaiseen tuotantokapasiteettiin.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">03</div>
+        <div class="action-text">Käynnistä FinMobilityn kautta koordinoitu EU-vaikuttamiskampanja RED III:n elinkaaripäästökirjanpidon sisällyttämiseksi kuorma-autojen CO2-raja-arvoasetukseen — tavoitteena yhtenäinen Pohjoismais-Balttilainen kannanotto komissiolle ennen seuraavaa asetustarkasteluikkunaa.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+  <span>Luotu 8.10.2026 klo 16.23.34 · Kaplan · Hoppmann ym.</span>
+</div>
+
+
+<div class="page-break">
+  <div class="sources-cover">
+    <div class="sources-cover-icon">📎</div>
+    <div>
+      <h2>Lähteet &amp; konkretisoinnit</h2>
+      <p>Väitteiden taustat, lähdeviitteet ja sitaatit osiottain</p>
+    </div>
+  </div>
+
+  <div class="sources-body">
+    
+    <div class="source-section">
+      <div class="source-section-heading">Tilannekuva</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Biokaasukuorma-autojen rekisteröinnit kasvoivat 96 % viimeisen mittausjakson aikana</div>
+        <div class="source-ref">📌 Lähde: Suomen Biokierto ja Biokaasu ry (SBB), lausunto 26.8.2026</div>
+        <div class="source-quote">*'Biokaasu on tällä hetkellä raskaan liikenteen yleisin vaihtoehtoinen käyttövoima Suomessa'*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">SBB arvioi 900 miljoonan euron investointien olevan uhattuna jakeluvelvoitteen mahdollisen heikentämisen vuoksi</div>
+        <div class="source-ref">📌 Lähde: Suomen Biokierto ja Biokaasu ry (SBB), tiedote 28.9.2026</div>
+        <div class="source-quote">*'Investointiuhka on 900 M€ — jakeluvelvoitteen heikentäminen romuttaisi kysyntäpohjan'*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kilpailevat kehykset</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Biokaasulla voidaan kattaa enintään noin 20 % tieliikenteen energiantarpeesta, raaka-aineiden rajallisuuden vuoksi</div>
+        <div class="source-ref">📌 Lähde: Traficom, ACE-sidosryhmätilaisuus 16.2.2026</div>
+        <div class="source-quote">*'Biokaasulla voidaan kattaa enintään noin 20 % tieliikenteen energiantarpeesta'*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Ministeri Essayah kehystää biokaasun kotimaisen huoltovarmuuden ja ravinnekierron rakennusaineena</div>
+        <div class="source-ref">📌 Lähde: Sari Essayah, kolumni Maaseudun Tulevaisuus, maaliskuu 2026</div>
+        <div class="source-quote">*'Kotimaista, huoltovarman energian arvoketjua on mahdollista rakentaa biokaasun varaan'*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kehystämisdimensiot ja -taktiikat</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">SKAL edellyttää biokaasun aseman turvaamista EU-tason päätöksenteossa</div>
+        <div class="source-ref">📌 Lähde: Suomen Kuljetus ja Logistiikka SKAL ry, linjaukset 2026</div>
+        <div class="source-quote">*'Biokaasun on oltava vaihtoehtona kestäväksi käyttövoimaksi myös jatkossa — tämä on varmistettava EU-tasoisessa päätöksenteossa'*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Nesteytetty biokaasu mahdollistaa yli 1 000 km ajomatkan yhdellä tankkauksella</div>
+        <div class="source-ref">📌 Lähde: Gasum, tuotetiedot ja SBB-lausunto 26.8.2026</div>
+        <div class="source-quote">*'Nesteytetty biokaasu (LBG) mahdollistaa yli 1 000 km ajomatkan yhdellä tankkauksella'*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Legitimiteettitilanne</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">EU:n kuorma-autojen CO2-raja-arvoasetus suosii nollapäästöisiä ajoneuvoja eikä tunnista biometaanin elinkaaripäästöjä kuten RED III</div>
+        <div class="source-ref">📌 Lähde: Euroopan parlamentin ja neuvoston asetus (EU) 2019/1242, muutoksineen 2023; RED III-direktiivi 2023/2413</div>
+        <div class="source-quote">*'Raskas liikenne tullaan suurilta osin sähköistämään hyödyntämällä sähköistä voimalinjaa'*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Biometaanin tuotanto oli vuonna 2024 noin 250 GWh — kaukana 4 TWh:n 2030-tavoitteesta</div>
+        <div class="source-ref">📌 Lähde: Suomen Biokierto ja Biokaasu ry (SBB), tilastot 2024–2026</div>
+        <div class="source-quote">*'Biometaanin tuotanto oli vuonna 2024 vain noin 250 GWh — kaukana 4 TWh:n 2030-tavoitteesta'*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Heikot signaalit</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">FinMobility julkaisi koordinoidun EU-kannanoton teknologianeutraalisuuden sisällyttämisestä eri säädöskokonaisuuksiin</div>
+        <div class="source-ref">📌 Lähde: FinMobility, kannanotto EU-komissiolle, kesä 2026</div>
+        <div class="source-quote">*'Kuljetusalan Eurooppa-tason edunvalvonta on alkanut koordinoitua yhteisrintamaksi biokaasun ja muiden uusiutuvien kaasupolttoaineiden puolesta'*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Biometaanin kysynnän ennakoidaan ylittävän kotimaisen tuotannon seuraavina vuosikymmeninä erityisesti raskaassa liikenteessä ja meriliikenteessä</div>
+        <div class="source-ref">📌 Lähde: Suomen Biokierto ja Biokaasu ry (SBB), arvio Konepörssi-medialle 2026</div>
+        <div class="source-quote">*'Biometaanin kysyntä ylittää kotimaisen tuotannon seuraavina vuosikymmeninä, erityisesti meriliikenteessä ja raskaassa tieliikenteessä'*</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+    <span>Sivu 2 / 2 · 8.10.2026 klo 16.23.34</span>
+  </div>
+</div>
+
+</body>
+</html>
