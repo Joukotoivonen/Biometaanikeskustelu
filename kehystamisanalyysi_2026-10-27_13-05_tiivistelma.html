@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suomen biometaani – kehysanalyysin tiivistelmä edunvalvontakäyttöön</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --ink:      #0F1623;
+    --ink2:     #1E2A3A;
+    --surface:  #F5F7FA;
+    --card:     #FFFFFF;
+    --border:   #E2E8F0;
+    --muted:    #64748B;
+    --brand:    #2F8F5F;
+    --kaplan:   #B8860B;
+    --hoppmann: #9B44A8;
+    --accent:   #2F8F5F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── SIVU 1: KANSI ── */
+  .cover {
+    background: linear-gradient(135deg, #0F1623 0%, #16332A 50%, #0F1623 100%);
+    color: #fff;
+    padding: 48px 56px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,143,95,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute; bottom: -40px; left: 30%;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-meta {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .cover-meta::before {
+    content: ''; display: inline-block;
+    width: 28px; height: 2px; background: var(--brand);
+  }
+  .cover h1 {
+    font-size: 30px; font-weight: 900; line-height: 1.15;
+    letter-spacing: -0.5px; margin-bottom: 16px; position: relative;
+  }
+  .cover-date { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+  .cover-stakeholder { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 24px; font-weight: 600; }
+  .lens-strip { display: flex; gap: 8px; flex-wrap: wrap; }
+  .lens-tag {
+    font-size: 11px; font-weight: 700; padding: 4px 12px;
+    border-radius: 20px; border: 1px solid; letter-spacing: 0.3px;
+  }
+  .lt-k { color: #F5C842; border-color: rgba(245,200,66,0.4); background: rgba(212,168,67,0.15); }
+  .lt-h { color: #D87CE8; border-color: rgba(216,124,232,0.4); background: rgba(155,68,168,0.15); }
+
+  /* ── SIVU 1: BODY ── */
+  .body-wrap { max-width: 860px; margin: 0 auto; padding: 40px 40px 20px; }
+
+  .section { margin-bottom: 28px; }
+  .section-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section h2 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.2px; }
+  .section p { color: #334155; font-size: 14px; line-height: 1.75; }
+
+  .concept-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+  .concept-chip {
+    font-size: 12px; font-weight: 600; padding: 5px 13px;
+    border-radius: 20px; background: var(--card);
+    border: 1px solid var(--border); color: var(--ink2);
+  }
+  .concept-chip:nth-child(3n+1) { border-left: 3px solid var(--brand); }
+  .concept-chip:nth-child(3n+2) { border-left: 3px solid var(--kaplan); }
+  .concept-chip:nth-child(3n+0) { border-left: 3px solid var(--hoppmann); }
+
+  .actions-wrap {
+    background: linear-gradient(135deg, #0F1623, #16332A);
+    border-radius: 12px; padding: 24px 28px; margin-top: 12px; color: #fff;
+  }
+  .action-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .action-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .action-num {
+    font-size: 22px; font-weight: 900; color: var(--brand);
+    min-width: 28px; line-height: 1.4; opacity: 0.7;
+  }
+  .action-text { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.65; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  /* ── SIVU 2: LÄHTEET ── */
+  .page-break { page-break-before: always; break-before: page; }
+
+  .sources-cover {
+    background: linear-gradient(135deg, #16332A 0%, #0F1623 100%);
+    color: #fff;
+    padding: 32px 56px 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .sources-cover-icon { font-size: 28px; opacity: 0.7; }
+  .sources-cover h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
+  .sources-cover p { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+  .sources-body { max-width: 860px; margin: 0 auto; padding: 32px 40px 40px; }
+  .source-section { margin-bottom: 32px; }
+  .source-section-heading {
+    font-size: 11px; font-weight: 800; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .source-section-heading::before {
+    content: ''; display: inline-block;
+    width: 16px; height: 2px; background: var(--accent);
+  }
+  .source-item-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .source-item-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--brand), var(--hoppmann));
+  }
+  .source-claim { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; padding-left: 4px; }
+  .source-ref { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding-left: 4px; }
+  .source-quote {
+    font-size: 13px; font-style: italic; color: #475569; line-height: 1.7;
+    padding: 10px 14px; background: #F8FAFC; border-radius: 6px; border-left: 2px solid var(--border);
+  }
+  .source-quote::before { content: '\201C'; }
+  .source-quote::after  { content: '\201D'; }
+
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+    padding: 16px 40px;
+    background: var(--ink);
+    color: rgba(255,255,255,0.35);
+    font-size: 11px; letter-spacing: 0.3px;
+  }
+  .footer-brand { font-weight: 700; color: rgba(255,255,255,0.55); }
+
+  @media print {
+    body { background: white; }
+    .cover, .sources-cover, .actions-wrap { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-meta">Biometaani &amp; Kehystäminen · Kehysanalyysin tiivistelmä</div>
+  <h1>Suomen biometaani – kehysanalyysin tiivistelmä edunvalvontakäyttöön</h1>
+  <div class="cover-date">27.10.2026</div>
+  <div class="cover-stakeholder">Painopiste: Yleiskatsaus</div>
+  <div class="lens-strip">
+    <span class="lens-tag lt-k">Kaplan 2008</span>
+    <span class="lens-tag lt-h">Hoppmann ym. 2020</span>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  
+  <div class="section">
+    <div class="section-label">01</div>
+    <h2>Tilannekuva</h2>
+    <p>Kolme kansainvälistä uutistapausta muodostaa kehystämiskartan, jolla on suora merkitys Suomen biometaanialalle. PurposeEnergyn 40 miljoonan dollarin laitos (Danone-elintarvikejäte, USA), FuelEU-poolingmekanismin aktivoituminen nesteytetyn biometaanin kysynnässä sekä Future Biogasin 104 miljoonan punnan institutionaalinen rahoituskierros osoittavat, että biometaanin globaali legitimiteetti vahvistuu nopeasti. Suomalaisille toimijoille ikkuna kansallisen kapasiteetin ja markkina-aseman vakiinnuttamiseen on avoin, mutta aikaherkkä.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">02</div>
+    <h2>Kilpailevat kehykset</h2>
+    <p>Hallitseva kehys kansainvälisesti on suorituskykyyn perustuva teknologiakypsyyskehys: biometaani esitetään todistettuna, skaalautuvana teollisuusratkaisuna eikä enää kokeellisena vaihtoehtona. Suomessa kilpaileva kehys on edelleen lantapohjainen maatalouskehys, joka rajaa alan pienemmäksi ja poliittisesti haavoittuvammaksi. Elintarviketeollisuuden jätevirtoihin ja infrastruktuurisijoittamiseen nojaava kansainvälinen kehys haastaa tämän kapean kansallisen kehyksen suoraan.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">03</div>
+    <h2>Kehystämisdimensiot ja -taktiikat</h2>
+    <p>Uutinen 1 hyödyntää suorituskykydimensiota ja johtopäätöstaktiikkaa: käyttöönotettu laitos, nimetty globaali asiakas ja konkreettinen raaka-aine johtavat suoraan väitteeseen teknologian kypsyydestä. FuelEU-uutinen käyttää ehdollistamistaktiikkaa – sääntely luo markkinavedon, johon tuotantokapasiteetin on vastattava. Future Biogas -tapaus hyödyntää edistymisdimensiota ja myönnytystaktiikkaa: institutionaalinen pääoma tunnustaa biometaanin infrastruktuuriomaisuusluokkana, mikä siirtää legitimiteettikeskustelun teknologiasta rahoitusrakenteisiin.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">04</div>
+    <h2>Legitimiteettitilanne</h2>
+    <p>Biometaanin kansainvälinen legitimiteettiasema on vahvistumisvaiheessa: institutionaaliset sijoittajat, EU-sääntely ja suuryritysasiakkaat toimivat samanaikaisesti legitimoivina voimina. Suomessa legitimiteettikamppailu käydään edelleen pääosin energiapoliittisella areenalla, eikä biometaania ole vakiinnutettu infrastruktuurisijoituskohteena tai elintarvikeketjun kiertotalousratkaisuna. Tämä aukko kansainvälisen ja kansallisen legitimiteettiaseman välillä on edunvalvonnan keskeinen kohde.</p>
+  </div>
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">05</div>
+    <h2>Heikot signaalit</h2>
+    <p>FuelEU-poolingmekanismin nopea aktivoituminen viittaa siihen, että EU-sääntely toimii markkinapullina ennakoitua nopeammin – kansallinen nesteytetyn biometaanin tuotantokapasiteetti on rakennettava ennen kuin markkinaosuudet vakiintuvat kilpailijamaiden hyväksi. Institutionaalisen pääoman virtaaminen biokaasuinfrastruktuuriin (Future Biogas -malli) avaa Suomessa hyödyntämättömän rahoituskanavan. Elintarvikejätteen kehystyminen arvokkaana syöteraaka-aineena haastaa lantakeskeisen kansallisen narratiivin ja osoittaa Valion ja Atrian kaltaisille yrityksille ankkuriasiakasroolin.</p>
+  </div>
+  
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Avaintermit</div>
+    <div class="concept-cloud">
+      <span class="concept-chip">kehystäminen</span><span class="concept-chip">kilpailevat kehykset</span><span class="concept-chip">johtopäätöstaktiikka</span><span class="concept-chip">ehdollistamistaktiikka</span><span class="concept-chip">myönnytystaktiikka</span><span class="concept-chip">suorituskykydimensio</span><span class="concept-chip">edistymisdimensio</span><span class="concept-chip">legitimiteettikamppailu</span><span class="concept-chip">nesteytetty biometaani</span><span class="concept-chip">ankkuriasiakas</span><span class="concept-chip">RED III</span><span class="concept-chip">FuelEU</span>
+    </div>
+  </div>
+
+  
+  <hr class="divider">
+  <div class="section">
+    <div class="section-label">Edunvalvontatoimenpiteet</div>
+    <div class="actions-wrap">
+      
+      <div class="action-item">
+        <div class="action-num">01</div>
+        <div class="action-text">Laadi biokierto.fi:n nimissä elintarviketeollisuudelle suunnattu lyhyt selvitys ankkuriasiakasmallin mahdollisuuksista Suomessa – nosta esiin Danone-tapaus ja lähesty Valiota ja Atriaa konkreettisilla yhteistyöskenaarioilla.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">02</div>
+        <div class="action-text">Tuota FuelEU-poolingmekanismia koskeva kansallinen kannanotto, jossa vaaditaan nesteytetyn biometaanin tuotantokapasiteetin pikaista tukemista – vedotaan siihen, että EU-sääntely luo kysynnän jo nyt mutta kansallinen tarjonta puuttuu.</div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">03</div>
+        <div class="action-text">Käynnistä sidosryhmäkampanja institutionaalisten sijoittajien tavoittamiseksi hyödyntäen Future Biogas -esimerkkiä: laadi sijoittajayhteenveto, jossa biometaaniinfrastruktuuri asemoidaan samaan omaisuusluokkaan tuulivoiman kanssa, ja esitä se suomalaisille eläke- ja infrastruktuurirahastoille.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+  <span>Luotu 27.10.2026 klo 15.06.44 · Kaplan · Hoppmann ym.</span>
+</div>
+
+
+<div class="page-break">
+  <div class="sources-cover">
+    <div class="sources-cover-icon">📎</div>
+    <div>
+      <h2>Lähteet &amp; konkretisoinnit</h2>
+      <p>Väitteiden taustat, lähdeviitteet ja sitaatit osiottain</p>
+    </div>
+  </div>
+
+  <div class="sources-body">
+    
+    <div class="source-section">
+      <div class="source-section-heading">Tilannekuva</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">PurposeEnergyn 40 miljoonan dollarin laitos käsittelee Danonen elintarvikejätettä ja osoittaa biokaasuteknologian kaupallisen kypsyyden vaativissa teollisuusympäristöissä.</div>
+        <div class="source-ref">📌 Lähde: Spotlight-analyysi / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"PurposeEnergyn 40 miljoonan dollarin laitos Danonen jogurttijaetteista kehystää biokaasun teollisen elintarvikejätteen arvonlisäysratkaisuna"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Future Biogasin 104 miljoonan punnan institutionaalinen rahoituskierros merkitsee siirtymää, jossa sijoittajat alkavat käsitellä anaerobista hajoamisinfrastruktuuria vakiintuneena omaisuusluokkana.</div>
+        <div class="source-ref">📌 Lähde: Heikot signaalit -osio / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"Institutional capital -virta biokaasuun on merkki siitä, että sijoittajat alkavat käsitellä AD-infrastruktuuria 'infrastructure asset class' -kategoriana samoin kuin tuulivoima tai aurinko aiemmin"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kilpailevat kehykset</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Kansainvälisesti hallitseva kehys on suorituskykyyn perustuva teknologiakypsyyskehys, kun taas Suomessa vallitsee edelleen lantapohjainen maatalouskehys.</div>
+        <div class="source-ref">📌 Lähde: Kehystämisdimensiot & -taktiikat -osio / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"Kehystäminen nojaa vahvasti performance-dimensioon: laitos on käyttöönotettu, kapasiteetti on nimetty, asiakas on globaali brändi ja prosessi on operationaalinen"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">FuelEU-poolingmekanismi luo sääntelypohjaisen markkinavedon nesteytetylle biometaanille, mikä asettaa kansallisen tuotantokapasiteetin rakentamisen kiireelliseksi.</div>
+        <div class="source-ref">📌 Lähde: Heikot signaalit -osio / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"FuelEU-poolingmekanismin nopea aktivoituminen LBM-kysynnässä viittaa siihen, että EU-sääntely toimii markkinapullina nopeammin kuin on ennakoitu"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Kehystämisdimensiot ja -taktiikat</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Johtopäätöstaktiikka rakentaa suoran ketjun konkreettisesta suorituskykynäytöstä teknologian laajempaan uskottavuuteen.</div>
+        <div class="source-ref">📌 Lähde: Kehystämisdimensiot & -taktiikat -osio / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"Tästä tehdään suora johtopäätöstaktiikan mukainen johtopäätös: biokaasuteknologia on kypsä ja skaalautuva myös vaativissa teollisuusympäristöissä"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Ehdollistamistaktiikka kytkee FuelEU-sääntelyn suoraan kansallisen kapasiteetin rakentamisen välttämättömyyteen.</div>
+        <div class="source-ref">📌 Lähde: Spotlight-analyysi / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"FuelEU-poolingmekanismia käsittelevä uutinen painottaa nesteytetyn biometaanin roolia meriliikenteen päästövähennyksessä sääntelykehyksen kautta"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Legitimiteettitilanne</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Institutionaalinen pääoma, EU-sääntely ja suuryritysasiakkaat toimivat samanaikaisesti biometaanin legitimiteettiä vahvistavina voimina kansainvälisesti.</div>
+        <div class="source-ref">📌 Lähde: Heikot signaalit -osio / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"Tämä voi avata Suomessa uuden pääomakanavan, jota ei vielä ole hyödynnetty kansallisessa biokaasupolitiikassa"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">Suomessa legitimiteettikamppailu käydään edelleen energiapoliittisella areenalla, eikä biometaania ole vakiinnutettu infrastruktuurisijoituskohteena.</div>
+        <div class="source-ref">📌 Lähde: Kehystämisdimensiot & -taktiikat -osio / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"Maturity match on vahva — teknologia on todellakin kaupallisesti kypsää, joten kehystys ei ylitä teknologista todellisuutta"*</div>
+      </div>
+    </div>
+    <div class="source-section">
+      <div class="source-section-heading">Heikot signaalit</div>
+      
+      <div class="source-item-card">
+        <div class="source-claim">Elintarvikejätteen kehystyminen arvokkaana syöteraaka-aineena haastaa Suomen lantakeskeisen narratiivin ja avaa uusia ankkuriasiakasmahdollisuuksia.</div>
+        <div class="source-ref">📌 Lähde: Heikot signaalit -osio / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"Suuret suomalaiset elintarvikeyritykset kuten Valio tai Atria voisivat olla tulevien ankkuriasiakasmallin kohteita samalla tavalla kuin Danone USA:ssa"*</div>
+      </div>
+      <div class="source-item-card">
+        <div class="source-claim">FuelEU-sääntelyn ennakoitua nopeampi vaikutus markkinakysyntään asettaa kansallisen nesteytetyn biometaanin kapasiteetin rakentamisen kiireelliseksi.</div>
+        <div class="source-ref">📌 Lähde: Heikot signaalit -osio / Biometaani-kehysanalyysi 2026</div>
+        <div class="source-quote">*"Suomen biometaanitoimijat voisivat hyödyntää tätä argumenttina kansallisen LBM-tuotantokapasiteetin pikaiselle rakentamiselle ennen kuin markkinaosuudet vakiintuvat kilpailijamaiden tuotannolle"*</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Biometaani &amp; Kehystäminen · biokierto.fi</span>
+    <span>Sivu 2 / 2 · 27.10.2026 klo 15.06.44</span>
+  </div>
+</div>
+
+</body>
+</html>
